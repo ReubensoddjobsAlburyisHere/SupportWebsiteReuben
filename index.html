@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Inquiry Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+        #message-container {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #message-container.show {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6 rounded-lg">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md">
+        <h2 class="text-2xl font-semibold mb-6 text-blue-600 text-center">Reubens odd jobs Customer Support Inquiry Form</h2>
+        <form id="supportForm" class="space-y-4">
+            <div>
+                <label for="full_name" class="block text-gray-700 text-sm font-bold mb-2 required-field">Full Name</label>
+                <input type="text" id="full_name" name="full_name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div>
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2 required-field">Email</label>
+                <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div>
+                <label for="phone_number" class="block text-gray-700 text-sm font-bold mb-2">Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div>
+                <label for="device_problem" class="block text-gray-700 text-sm font-bold mb-2">Device</label>
+                <select id="device_problem" name="device_problem" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Select a Device</option>
+                    <optgroup label="Android Devices">
+                        <option value="android_phone">Android Phone</option>
+                        <option value="android_tablet">Android Tablet</option>
+                        <option value="android_other">Other Android Device</option>
+                    </optgroup>
+                    <optgroup label="Apple">
+                        <option value="macbook">MacBook</option>
+                        <option value="imac">iMac</option>
+                    </optgroup>
+                    <optgroup label="Windows">
+                        <option value="dell_windows_pc">Dell (Windows)</option>
+                        <option value="hp_windows_pc">HP (Windows)</option>
+                        <option value="lenovo_windows_pc">Lenovo (Windows)</option>
+                        <option value="acer_windows_pc">Acer (Windows)</option>
+                        <option value="asus_windows_pc">ASUS (Windows)</option>
+                        <option value="microsoft_windows_pc">Microsoft (Windows)</option>
+                        <option value="samsung_windows_pc">Samsung (Windows)</option>
+                     </optgroup>
+                    <option value="other">Other Device</option>
+                </select>
+            </div>
+            <div>
+                <label for="inquiry_type" class="block text-gray-700 text-sm font-bold mb-2 required-field">Type of Inquiry</label>
+                <select id="inquiry_type" name="inquiry_type" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Select an Inquiry Type</option>
+                    <option value="general_question">General Question about Services</option>
+                    <option value="service_problem">Problem with a Service</option>
+                    <option value="job_application">Job Application Inquiry</option>
+                    <option value="payment_issue">Payment Issue (General)</option>
+                    <option value="safety_issue">Report a Safety Issue</option>
+                    <option value="technical_support">Technical Support</option>
+                    <option value="data_privacy">Data Privacy Request</option>
+                    <option value="feedback_provider">Feedback on a Service Provider</option>
+                    <option value="website_issue">Website Issue or Error</option>
+                    <option value="trouble_finding">Trouble Finding a Job or Worker</option>
+                    <option value="platform_policies">Question about Platform Policies</option>
+                    <option value="business_partnership">Business/Partnership Inquiry</option>
+                    <option value="advertising_inquiry">Advertising Inquiry</option>
+                    <option value="general_feedback">General Platform Feedback/Suggestions</option>
+                    <option value="feature_request">Feature Request/Suggestion</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div id="subcategory_container" style="display: none;">
+                <label for="subcategory" class="block text-gray-700 text-sm font-bold mb-2">Subcategory</label>
+                <select id="subcategory" name="subcategory" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Please select a subcategory</option>
+                </select>
+            </div>
+            <div>
+                <label for="tell_us_more" class="block text-gray-700 text-sm font-bold mb-2">Tell Us More</label>
+                <textarea id="tell_us_more" name="tell_us_more" rows="5" cols="50" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+        </form>
+    </div>
+    <div id="message-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("o3QSOU-w9DtvwwLIO"); // Public Key
+        })();
+
+        const inquiryType = document.getElementById('inquiry_type');
+        const subcategoryDropdown = document.getElementById('subcategory');
+        const subcategoryContainer = document.getElementById('subcategory_container');
+        const form = document.getElementById('supportForm');
+        const messageContainer = document.getElementById('message-container');
+
+        const subcategoryMapping = {
+            "general_question": [
+                { value: "service_offered", label: "What types of services do you offer?" },
+                { value: "getting_started", label: "How do I get started?" },
+                { value: "user_manual", label: "Is there a user manual or guide?" },
+                { value: "operating_hours", label: "What are your operating hours?" },
+                { value: "contact_info", label: "Who can I contact for more information?" }
+            ],
+            "service_problem": [
+                { value: "service_not_completed", label: "A service I requested was not completed." },
+                { value: "service_quality_issue", label: "The quality of the service was not as expected." },
+                { value: "overcharged", label: "I was overcharged for a service." },
+                { value: "unprofessional_provider", label: "The service provider was unprofessional." },
+                { value: "technical_issue_during_service", label: "I experienced a technical issue during the service." }
+            ],
+            "job_application": [
+                { value: "open_positions", label: "Where can I find a list of open positions?" },
+                { value: "required_qualifications", label: "What are the required qualifications for this role?" },
+                { value: "application_process", label: "What is the application process?" },
+                { value: "resume_submission", label: "Can I submit my resume even if there are no suitable openings?" },
+                { value: "application_questions", label: "Who should I contact with questions about my application?" }
+            ],
+            "payment_issue": [
+                { value: "charge_question", label: "I have a question about a recent charge." },
+                { value: "payment_method_issue", label: "My payment method is not working." },
+                { value: "update_billing_info", label: "How do I update my billing information?" },
+                { value: "payment_not_received", label: "I haven't received my payment." },
+                { value: "accepted_payment_methods", label: "What are your accepted payment methods?" }
+            ],
+            "safety_issue": [
+                { value: "unsafe_behavior", label: "I witnessed unsafe behavior by a service provider." },
+                { value: "suspicious_user", label: "I encountered a suspicious user on the platform." },
+                { value: "job_safety_concerns", label: "I have concerns about the safety of a listed job." },
+                { value: "incident_during_service", label: "I was involved in an incident during a service." },
+                { value: "safety_investigations", label: "How do you handle safety investigations?" }
+            ],
+            "technical_support": [
+                { value: "website_issue", label: "Website Issue or Error" },
+                { value: "page_not_loading", label: "A specific page is not loading." },
+                { value: "error_messages", label: "I am receiving error messages." },
+                { value: "broken_layout", label: "The website layout is broken." },
+                { value: "search_not_working", label: "Search functionality is not working." },
+                { value: "feature_not_working", label: "A feature is not working as expected." },
+                { value: "software_update", label: "How do I update my software?" },
+                { value: "system_requirements", label: "What are the system requirements?" },
+                { value: "accessibility_help", label: "I need help with accessibility features." }
+            ],
+            "data_privacy": [
+                { value: "access_data", label: "How can I access my personal data?" },
+                { value: "data_collected", label: "What data do you collect about me?" },
+                { value: "privacy_settings", label: "How can I update my privacy settings?" },
+                { value: "delete_account", label: "How do I request deletion of my account and data?" },
+                { value: "data_protection_officer", label: "Who is your Data Protection Officer?" }
+            ],
+            "feedback_provider": [
+                { value: "positive_review", label: "I want to leave a positive review." },
+                { value: "negative_report", label: "I want to report a negative experience." },
+                { value: "edit_review", label: "Can I edit a review I've already submitted?" },
+                { value: "ratings_reviews_use", label: "How are ratings and reviews used?" },
+                 { value: "review_question", label: "I have a question about a specific review." }
+            ],
+            "trouble_finding": [
+                { value: "search_not_relevant", label: "My job search is not returning relevant results." },
+                { value: "post_job_listing", label: "Where can I post a job listing?" },
+                { value: "filter_search_results", label: "How do I filter search results?" },
+                { value: "no_response_applications", label: "I'm not receiving responses to my applications." },
+                { value: "improve_profile", label: "How can I improve my profile to attract more opportunities?" }
+            ],
+            "platform_policies": [
+                { value: "terms_of_service", label: "What are the terms of service?" },
+                { value: "cancellation_policy", label: "What is your cancellation policy?" },
+                { value: "community_guidelines", label: "What are the community guidelines?" },
+                { value: "dispute_handling", label: "How do you handle disputes between users?" },
+                { value: "prohibited_activities", label: "Where can I find information about prohibited activities?" }
+            ],
+            "business_partnership": [
+                { value: "partnership_inquiry", label: "I am interested in a potential business partnership." },
+                { value: "company_integration", label: "How can my company integrate with your platform?" },
+                { value: "business_development_contact", label: "Who handles business development?" },
+                { value: "partner_program", label: "Do you have a partner program?" }
+            ],
+            "advertising_inquiry": [
+                { value: "advertising_options", label: "What are your advertising options?" },
+                { value: "advertising_rates", label: "What are your advertising rates?" },
+                { value: "advertising_contact", label: "Who can I contact to discuss advertising?" },
+                { value: "media_kit", label: "Can I see your media kit?" },
+                { value: "audience_demographics", label: "What are your audience demographics?" }
+            ],
+            "feature_request": [
+                { value: "new_feature_idea", label: "I have an idea for a new feature." },
+                { value: "improve_search", label: "Can you improve the existing search functionality?" },
+                { value: "specific_feature_request", label: "It would be helpful to have [specific feature]." },
+                { value: "considered_feature", label: "Have you considered [another specific feature]?" },
+                { value: "planned_updates", label: "Where can I see a list of planned updates?" }
+            ],
+            "other": [
+                { value: "question_not_listed", label: "My question doesn't fit into any of these categories." },
+                { value: "direct_contact", label: "I need to speak with someone directly." },
+                { value: "support_feedback", label: "I have feedback on your support process." },
+                { value: "press_inquiry", label: "I am a member of the press with an inquiry." },
+                { value: "legal_question", label: "I have a legal question." }
+            ]
+        };
+
+        inquiryType.addEventListener('change', function() {
+            const selectedInquiryType = this.value;
+            subcategoryDropdown.innerHTML = '<option value="">Please select a subcategory</option>'; // Clear previous options
+
+            if (subcategoryMapping[selectedInquiryType]) {
+                subcategoryContainer.style.display = 'block';
+                subcategoryMapping[selectedInquiryType].forEach(subCategory => {
+                    let option = document.createElement('option');
+                    option.value = subCategory.value;
+                    option.textContent = subCategory.label;
+                    subcategoryDropdown.appendChild(option);
+                });
+            } else {
+                subcategoryContainer.style.display = 'none';
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                email: document.getElementById('email').value,
+                phone_number: document.getElementById('phone_number').value,
+                device_problem: document.getElementById('device_problem').value,
+                inquiry_type: document.getElementById('inquiry_type').value,
+                subcategory: document.getElementById('subcategory').value,
+                tell_us_more: document.getElementById('tell_us_more').value
+            };
+
+            emailjs.send("service_pz6fetg", "template_b6hooy8", formData) // Service ID, Template ID
+                .then(function(response) {
+                    console.log('SUCCESS!', response);
+                    console.log('Response status:', response.status);
+                    console.log('Response text:', response.text);
+                    form.reset();
+                    messageContainer.textContent = "Thank you for contacting us. We will respond within 2-5 days.";
+                    messageContainer.classList.add('show');
+                    setTimeout(() => {
+                        messageContainer.classList.remove('show');
+                    }, 5000);
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    console.log('Error status:', error.status);
+                    console.log('Error text:', error.text);
+                    messageContainer.textContent = "Sorry, there was an error sending your message. Please try again.";
+                    messageContainer.classList.add('show');
+                    messageContainer.style.backgroundColor = "#FF6B6B";
+                    setTimeout(() => {
+                        messageContainer.classList.remove('show');
+                    }, 5000);
+                });
+        });
+    </script>
+</body>
+</html>
