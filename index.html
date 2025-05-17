@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,31 +49,34 @@
                 <label for="phone_number" class="block text-gray-700 text-sm font-bold mb-2">Phone Number</label>
                 <input type="tel" id="phone_number" name="phone_number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
-            <div>
-                <label for="device_problem" class="block text-gray-700 text-sm font-bold mb-2">Device</label>
-                <select id="device_problem" name="device_problem" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="">Select a Device</option>
-                    <optgroup label="Android Devices">
-                        <option value="android_phone">Android Phone</option>
-                        <option value="android_tablet">Android Tablet</option>
-                        <option value="android_other">Other Android Device</option>
-                    </optgroup>
-                    <optgroup label="Apple">
-                        <option value="macbook">MacBook</option>
-                        <option value="imac">iMac</option>
-                    </optgroup>
-                    <optgroup label="Windows">
-                        <option value="dell_windows_pc">Dell (Windows)</option>
-                        <option value="hp_windows_pc">HP (Windows)</option>
-                        <option value="lenovo_windows_pc">Lenovo (Windows)</option>
-                        <option value="acer_windows_pc">Acer (Windows)</option>
-                        <option value="asus_windows_pc">ASUS (Windows)</option>
-                        <option value="microsoft_windows_pc">Microsoft (Windows)</option>
-                        <option value="samsung_windows_pc">Samsung (Windows)</option>
-                     </optgroup>
-                    <option value="other">Other Device</option>
-                </select>
-            </div>
+          <div>
+    <label for="device_problem" class="block text-gray-700 text-sm font-bold mb-2 required-field">Device</label>
+    <select id="device_problem" name="device_problem" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <option value="">Select a Device</option>
+        <optgroup label="Android Devices">
+            <option value="android_phone">Android Phone</option>
+            <option value="android_tablet">Android Tablet</option>
+            <option value="android_other">Other Android Device</option>
+        </optgroup>
+        <optgroup label="Apple">
+    <option value="macbook">MacBook</option>
+    <option value="imac">iMac</option>
+    <option value="iphone">iPhone</option>
+    <option value="ipad">iPad</option>
+</optgroup>
+        <optgroup label="Windows">
+            <option value="dell_windows_pc">Dell (Windows)</option>
+            <option value="hp_windows_pc">HP (Windows)</option>
+            <option value="lenovo_windows_pc">Lenovo (Windows)</option>
+            <option value="acer_windows_pc">Acer (Windows)</option>
+            <option value="asus_windows_pc">ASUS (Windows)</option>
+            <option value="microsoft_windows_pc">Microsoft (Windows)</option>
+            <option value="samsung_windows_pc">Samsung (Windows)</option>
+           </optgroup>
+        <option value="other">Other Device</option>
+    </select>
+</div>
+               
             <div>
                 <label for="inquiry_type" class="block text-gray-700 text-sm font-bold mb-2 required-field">Type of Inquiry</label>
                 <select id="inquiry_type" name="inquiry_type" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -96,12 +100,11 @@
                 </select>
             </div>
             <div id="subcategory_container" style="display: none;">
-                <label for="subcategory" class="block text-gray-700 text-sm font-bold mb-2">Subcategory</label>
-                <select id="subcategory" name="subcategory" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="">Please select a subcategory</option>
-                </select>
-            </div>
-            <div>
+    <label for="subcategory" class="block text-gray-700 text-sm font-bold mb-2 required-field">Subcategory</label>
+    <select id="subcategory" name="subcategory" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <option value="">Please select a subcategory</option>
+    </select>
+</div>
                 <label for="tell_us_more" class="block text-gray-700 text-sm font-bold mb-2">Tell Us More</label>
                 <textarea id="tell_us_more" name="tell_us_more" rows="5" cols="50" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
             </div>
